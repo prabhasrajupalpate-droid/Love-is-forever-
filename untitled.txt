@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>For My Love ❤️</title>
+
+<style>
+body {
+  margin: 0;
+  background: radial-gradient(circle at center, #2b0000, black);
+  overflow: hidden;
+  font-family: 'Courier New', cursive;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Floating hearts */
+.small-heart {
+  position: absolute;
+  color: crimson;
+  font-size: 20px;
+  animation: floatUp 6s linear infinite;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+}
+
+/* Main Heart */
+.heart {
+  position: relative;
+  width: 320px;
+  height: 290px;
+  transform: rotate(-45deg);
+  animation: beat 1.2s infinite;
+  filter: drop-shadow(0 0 20px crimson);
+  cursor: pointer;
+}
+
+.heart:before,
+.heart:after {
+  content: "";
+  position: absolute;
+  width: 320px;
+  height: 290px;
+  background: darkred;
+  border-radius: 50%;
+}
+
+.heart:before { top: -160px; left: 0; }
+.heart:after { left: 160px; top: 0; }
+
+.text {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  transform: rotate(45deg);
+  top: 75px;
+  color: #fff5f5;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 20px;
+  line-height: 1.5;
+}
+
+@keyframes beat {
+  0% { transform: rotate(-45deg) scale(1); }
+  50% { transform: rotate(-45deg) scale(1.08); }
+  100% { transform: rotate(-45deg) scale(1); }
+}
+
+/* Popup */
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #330000;
+  color: white;
+  padding: 25px;
+  border-radius: 15px;
+  text-align: center;
+  display: none;
+  box-shadow: 0 0 20px crimson;
+}
+
+.popup button {
+  margin-top: 15px;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 20px;
+  background: crimson;
+  color: white;
+  cursor: pointer;
+}
+
+/* Music Button */
+.music-btn {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  background: crimson;
+  color: white;
+  cursor: pointer;
+  z-index: 999;
+}
+</style>
+</head>
+
+<body>
+
+<div class="heart" onclick="showSecret()">
+  <div class="text">
+    Bachuuu ❤️<br><br>
+    From the moment you came into my life,
+    everything feels brighter and more beautiful.
+    You are my peace, my happiness, and my forever.
+    Even if the world changes around us,
+    my heart will always find its way back to you.
+  </div>
+</div>
+
+<div class="popup" id="secretPopup">
+  💌 My Secret Message 💌<br><br>
+  If I had to choose again in every lifetime,
+  I would still choose you without hesitation.
+  You are my always and my forever. ❤️<br>
+  <button onclick="closeSecret()">Close</button>
+</div>
+
+<!-- Music -->
+<audio id="bgMusic" loop>
+  <source src="https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3" type="audio/mpeg">
+</audio>
+
+<button class="music-btn" onclick="startMusic()">Play Music 🎵</button>
+
+<script>
+function startMusic() {
+  document.getElementById("bgMusic").play();
+}
+
+/* Floating hearts */
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.classList.add("small-heart");
+  heart.innerHTML = "❤️";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+  document.body.appendChild(heart);
+  setTimeout(() => { heart.remove(); }, 6000);
+}
+setInterval(createHeart, 500);
+
+function showSecret() {
+  document.getElementById("secretPopup").style.display = "block";
+}
+
+function closeSecret() {
+  document.getElementById("secretPopup").style.display = "none";
+}
+</script>
+
+</body>
+</html>
